@@ -1,18 +1,27 @@
 #Dependencies
 import os
 import urllib.parse
+import pandas as pd
 from pprint import pprint
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
+from sklearn import metrics
 
 
-#def test():
+#def testData():
 
-#def train():
+def trainData(X, y):
 
-#def featureExtraction():
+    model = MultinomialNB()
+    model.fit(X, y)
+    return model
 
+def featureExtraction(data):
+
+    vectorizer = TfidfVectorizer(analyzer='char', ngram_range=(1,3))
+    x = vectorizer.fit_transform(data)
+    return x
 
 # Label the data either malicious (1) or benign (0)
 def labelData(data, label):
@@ -29,20 +38,34 @@ def loadFile(name):
 
     result = []
     for d in data:
-        d = str(urllib.parse.unquote(d))   #converting url encoded data to simple string
+        d = str(urllib.parse.unquote(d))
         result.append(d)
     return result
 
 def main():
 
-    malicious = loadFile('badqueries.txt')
-    benign = loadFile('goodqueries.txt')
+    malicious = loadFile('malicious.txt')
+    benign = loadFile('benign.txt')
 
-    malicious = labelData(malicious, 1)
-    benign = labelData(benign, 0)
+    lblMalicious = labelData(malicious, 1)
+    lblBenign = labelData(benign, 0)
 
+    lblData = lblMalicious + lblBenign
+    data = malicious + benign
 
-    pprint(benign)
+    X = featureExtraction(data)
+    y = lblData
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    model = trainData(X_train, y_train)
+
+    prediction = model.predict(X_test)
+
+    accuracy = model.score(X_test, y_test)
+    recall = metrics.recall_score(y_test, prediction)
+    print(accuracy)
+    print(recall)
 
 main()
 
