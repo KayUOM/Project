@@ -7,6 +7,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn import metrics
+from sklearn.utils import shuffle
+
 
 
 def test(model, test):
@@ -25,6 +27,8 @@ def featureExtraction(data):
     vectorizer = TfidfVectorizer(analyzer='char', ngram_range=(1,3))
     x = vectorizer.fit_transform(data)
     return x
+
+
 
 def main():
 
