@@ -1,0 +1,5 @@
+- Add Probabilistic Scores
+- Persist and Load Model
+- Add Pipeline To Integrate More Classifiers
+- Implement Prediction Of Custom New Code
+
