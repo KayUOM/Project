@@ -1,0 +1,30 @@
+TODO:
+
+1. Introduction
+- What is the Problem
+- Motivation For Project
+- Recent statistics on the number of cyber security threats
+- Who is the audience ( beginners and advanced )
+- whats included in the rest of this report 
+ 
+2. Research
+- Research Methods - how you will research
+- how will you gather data
+- analyse a case study (LinkedIn hack and others )
+
+3. Aims and Objective
+- Aim: Analyse Web Application Security (Cyber) Threats,
+can machines predict if a piece of code is maliciou.
+- List of Objectives to achieve this aim.
+- Gannt Chart
+
+4. Ethics
+- Why do we need to consider ethics ( ethics of hacking )
+- Ethics of using and collecting the data
+
+5. Evaluation
+- What is the success criteria for the project (Does the algorithm 
+successfully predict if code is malicious? 
+- How will it be tested 
+
+
