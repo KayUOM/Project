@@ -2,29 +2,39 @@ TODO:
 
 1. Introduction
 - What is the Problem
-- Motivation For Project
+- Motivation For Project, why is it a problem
 - Recent statistics on the number of cyber security threats
 - Who is the audience ( beginners and advanced )
 - whats included in the rest of this report 
  
-2. Research
+2. Background
 - Research Methods - how you will research
 - how will you gather data
 - analyse a case study (LinkedIn hack and others )
+- why is securing web applications important
 
-3. Aims and Objective
+
+3. Research
+what methods will you use to solve the problem
+
+
+4. Aims and Objective
 - Aim: Analyse Web Application Security (Cyber) Threats,
 can machines predict if a piece of code is maliciou.
 - List of Objectives to achieve this aim.
 - Gannt Chart
 
-4. Ethics
+- Research Methods
+Process Flow
+Tools
+
+5. Ethics
 - Why do we need to consider ethics ( ethics of hacking )
 - Ethics of using and collecting the data
 
-5. Evaluation
+6. Evaluation
 - What is the success criteria for the project (Does the algorithm 
 successfully predict if code is malicious? 
 - How will it be tested 
 
-
+its proportional, we need to add a new scale param similr to b*f (a, the overall scale, base line distance). z = a / k+disparity. XY should be similar to Z

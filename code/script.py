@@ -38,7 +38,8 @@ def main():
     y = data['status'].astype(int)
     X = featureExtraction(X)
 
-    # kf = KFold(n_splits=10, random_state=None, shuffle=False)
+    # 10 fold Cross Validation Code:
+    # kf = KFold(n_splits=10000, random_state=None, shuffle=False)
     # for train_index, test_index in kf.split(X):
     #
     #     X_train, X_test = X[train_index], X[test_index]
@@ -50,9 +51,6 @@ def main():
     #     recall = metrics.recall_score(y_test, prediction)
     #     precision = metrics.precision_score(y_test, prediction)
     #     print(accuracy, recall, precision)
-    #
-
-
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
 
@@ -72,11 +70,13 @@ def main():
     confusion_matrix = metrics.confusion_matrix(y_test, prediction, labels=[1, 0])
     report = metrics.classification_report(y_test, prediction)
 
-        print("Accuracy: %.2f" % accuracy + "%")
-        print(("Recall: %.2f" % recall + "%"))
-        print(("Precision: %.2f" % precision + "%"))
-        print(("F1: %.2f" % f1 + "%"))
-        print (confusion_matrix)
+    print("Accuracy: %.2f" % accuracy + "%")
+    print("Recall: %.2f" % recall + "%")
+    print("Precision: %.2f" % precision + "%")
+    print("F1: %.2f" % f1 + "%")
+    print (confusion_matrix)
+
+
 
     #
     # plt.matshow(confusion_matrix)
@@ -84,13 +84,13 @@ def main():
     # plt.xlabel("Predicted")
     # plt.ylabel("Actual")
     # plt.show()
-
-
-
+    #
+    #
+    #
     # print(matplotlib.get_backend())
     # print(rcsetup.all_backends)
 
-    # print(report)
+    print(report)
 
 
 main()
