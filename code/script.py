@@ -62,35 +62,66 @@ def main():
 
     # print(model.classes_)
 
-    accuracy = model.score(X_test, y_test)
-    recall = metrics.recall_score(y_test, prediction)
-    precision = metrics.precision_score(y_test, prediction)
-    f1 = metrics.precision_score(y_test, prediction)
-
     confusion_matrix = metrics.confusion_matrix(y_test, prediction, labels=[1, 0])
-    report = metrics.classification_report(y_test, prediction)
 
-    print("Accuracy: %.2f" % accuracy + "%")
-    print("Recall: %.2f" % recall + "%")
-    print("Precision: %.2f" % precision + "%")
-    print("F1: %.2f" % f1 + "%")
-    print (confusion_matrix)
+    print(confusion_matrix)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
     #
-    # plt.matshow(confusion_matrix)
-    # plt.colorbar()
-    # plt.xlabel("Predicted")
-    # plt.ylabel("Actual")
-    # plt.show()
+    # accuracy = model.score(X_test, y_test)
+    # recall = metrics.recall_score(y_test, prediction)
+    # precision = metrics.precision_score(y_test, prediction)
+    # f1 = metrics.precision_score(y_test, prediction)
+    #
+    # confusion_matrix = metrics.confusion_matrix(y_test, prediction, labels=[1, 0])
+    # report = metrics.classification_report(y_test, prediction)
+    #
+    # print("Accuracy: %.2f" % accuracy + "%")
+    # print("Recall: %.2f" % recall + "%")
+    # print("Precision: %.2f" % precision + "%")
+    # print("F1: %.2f" % f1 + "%")
+    # print (confusion_matrix)
     #
     #
+    # # plt.matshow(confusion_matrix)
+    # # plt.colorbar()
+    # # plt.xlabel("Predicted")
+    # # plt.ylabel("Actual")
+    # # plt.show()
+    # # print(matplotlib.get_backend())
+    # # print(rcsetup.all_backends)
     #
-    # print(matplotlib.get_backend())
-    # print(rcsetup.all_backends)
-
-    print(report)
+    # print(report)
 
 
 main()
