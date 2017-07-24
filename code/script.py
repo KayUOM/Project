@@ -39,65 +39,65 @@ def main():
     X = featureExtraction(X)
 
     # 10 fold Cross Validation Code:
-    # kf = KFold(n_splits=10000, random_state=None, shuffle=False)
-    # for train_index, test_index in kf.split(X):
+    kf = KFold(n_splits=10000, random_state=None, shuffle=False)
+    for train_index, test_index in kf.split(X):
+
+        X_train, X_test = X[train_index], X[test_index]
+        y_train, y_test = y[train_index], y[test_index]
+
+        model = train(X_train, y_train)
+        prediction = test(model, X_test)
+        accuracy = model.score(X_test, y_test)
+        recall = metrics.recall_score(y_test, prediction)
+        precision = metrics.precision_score(y_test, prediction)
+        print(accuracy, recall, precision)
+
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
     #
-    #     X_train, X_test = X[train_index], X[test_index]
-    #     y_train, y_test = y[train_index], y[test_index]
+    # model = train(X_train, y_train)
     #
-    #     model = train(X_train, y_train)
-    #     prediction = test(model, X_test)
-    #     accuracy = model.score(X_test, y_test)
-    #     recall = metrics.recall_score(y_test, prediction)
-    #     precision = metrics.precision_score(y_test, prediction)
-    #     print(accuracy, recall, precision)
-
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
-
-    model = train(X_train, y_train)
-
-    prediction = test(model, X_test)
-
-    probability = model.predict_proba(X_test)
-
-    # print(model.classes_)
-
-    confusion_matrix = metrics.confusion_matrix(y_test, prediction, labels=[1, 0])
-
-    print(confusion_matrix)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    # prediction = test(model, X_test)
     #
+    # probability = model.predict_proba(X_test)
+    #
+    # # print(model.classes_)
+    #
+    # confusion_matrix = metrics.confusion_matrix(y_test, prediction, labels=[1, 0])
+    #
+    # print(confusion_matrix)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     # accuracy = model.score(X_test, y_test)
     # recall = metrics.recall_score(y_test, prediction)
     # precision = metrics.precision_score(y_test, prediction)
