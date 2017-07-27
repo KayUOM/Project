@@ -34,94 +34,76 @@ def main():
 
     data = pd.read_csv('data.csv', sep=',')
 
+    # m = data.loc[data['status'] == 0]
+    # m = m.sample(frac=1)
+    # m = m.sample(n=52987)
+    #
+    # print(m.shape)
+    #
+    # n = data.loc[data['status'] == 1]
+    # n = n.sample(frac=1)
+    #
+    # print(n.shape)
+    #
+    # result = [m,n]
+    #
+    # data = pd.concat(result)
+    #
+    #
+    # print(data.shape)
+
     X = data['code'].astype(str)
     y = data['status'].astype(int)
     X = featureExtraction(X)
 
     # 10 fold Cross Validation Code:
-    kf = KFold(n_splits=10000, random_state=None, shuffle=False)
-    for train_index, test_index in kf.split(X):
-
-        X_train, X_test = X[train_index], X[test_index]
-        y_train, y_test = y[train_index], y[test_index]
-
-        model = train(X_train, y_train)
-        prediction = test(model, X_test)
-        accuracy = model.score(X_test, y_test)
-        recall = metrics.recall_score(y_test, prediction)
-        precision = metrics.precision_score(y_test, prediction)
-        print(accuracy, recall, precision)
-
-    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+    # kf = KFold(n_splits=10000, random_state=None, shuffle=False)
+    # for train_index, test_index in kf.split(X):
     #
-    # model = train(X_train, y_train)
+    #     X_train, X_test = X[train_index], X[test_index]
+    #     y_train, y_test = y[train_index], y[test_index]
     #
-    # prediction = test(model, X_test)
-    #
-    # probability = model.predict_proba(X_test)
-    #
-    # # print(model.classes_)
-    #
-    # confusion_matrix = metrics.confusion_matrix(y_test, prediction, labels=[1, 0])
-    #
-    # print(confusion_matrix)
+    #     model = train(X_train, y_train)
+    #     prediction = test(model, X_test)
+    #     accuracy = model.score(X_test, y_test)
+    #     recall = metrics.recall_score(y_test, prediction)
+    #     precision = metrics.precision_score(y_test, prediction)
+    #     print(accuracy, recall, precision)
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.50, random_state=42)
+
+    model = train(X_train, y_train)
+
+    prediction = test(model, X_test)
+
+    probability = model.predict_proba(X_test)
+
+    # print(model.classes_)
+
+    accuracy = model.score(X_test, y_test)
+    recall = metrics.recall_score(y_test, prediction)
+    precision = metrics.precision_score(y_test, prediction)
+    f1 = metrics.precision_score(y_test, prediction)
+
+    confusion_matrix = metrics.confusion_matrix(y_test, prediction, labels=[1, 0])
+    report = metrics.classification_report(y_test, prediction)
+
+    print("Accuracy: %.2f" % accuracy + "%")
+    print("Recall: %.2f" % recall + "%")
+    print("Precision: %.2f" % precision + "%")
+    print("F1: %.2f" % f1 + "%")
+    print (confusion_matrix)
+    print(report)
+
+    # plt.matshow(confusion_matrix)
+    # plt.colorbar()
+    # plt.xlabel("Predicted")
+    # plt.ylabel("Actual")
+    # plt.show()
+    # print(matplotlib.get_backend())
+    # print(rcsetup.all_backends)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # accuracy = model.score(X_test, y_test)
-    # recall = metrics.recall_score(y_test, prediction)
-    # precision = metrics.precision_score(y_test, prediction)
-    # f1 = metrics.precision_score(y_test, prediction)
-    #
-    # confusion_matrix = metrics.confusion_matrix(y_test, prediction, labels=[1, 0])
-    # report = metrics.classification_report(y_test, prediction)
-    #
-    # print("Accuracy: %.2f" % accuracy + "%")
-    # print("Recall: %.2f" % recall + "%")
-    # print("Precision: %.2f" % precision + "%")
-    # print("F1: %.2f" % f1 + "%")
-    # print (confusion_matrix)
-    #
-    #
-    # # plt.matshow(confusion_matrix)
-    # # plt.colorbar()
-    # # plt.xlabel("Predicted")
-    # # plt.ylabel("Actual")
-    # # plt.show()
-    # # print(matplotlib.get_backend())
-    # # print(rcsetup.all_backends)
-    #
-    # print(report)
 
 
 main()
