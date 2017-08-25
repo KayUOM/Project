@@ -336,7 +336,7 @@ def main():
     print(report)
     print("--- %s seconds ---" % (time.time() - start_time))
 
-
+    # Average / Standard deviation Cross Validation using standard Scikit learn library
     # crossValidation(X,y)
 
 
@@ -357,20 +357,20 @@ def main():
     # roc(y_test, prediction)
 
     #LEARNING CURVE
-    # title = "Learning Curve"
     # # Cross validation with 100 iterations to get smoother mean test and train
     # # score curves, each time with 20% data randomly selected as a validation set.
-    # cv = ShuffleSplit(n_splits=100, test_size=0.2, random_state=0)
-    #
-    # estimator = MultinomialNB()
-    # plot_learning_curve(estimator, title, X, y, ylim=(0.7, 1.01), cv=cv, n_jobs=4)
-    # plt.show()
+    title = "Learning Curve"
+    cv = ShuffleSplit(n_splits=100, test_size=0.2, random_state=0)
 
-    # print(prediction)
-    # plt.scatter(y_test, prediction)
-    # plt.xlabel("TrueValues")
-    # plt.ylabel("Predictions")
-    # plt.show()
+    estimator = MultinomialNB()
+    plot_learning_curve(estimator, title, X, y, ylim=(0.7, 1.01), cv=cv, n_jobs=4)
+    plt.show()
+
+    print(prediction)
+    plt.scatter(y_test, prediction)
+    plt.xlabel("TrueValues")
+    plt.ylabel("Predictions")
+    plt.show()
 
 main()
 
