@@ -23,6 +23,7 @@ from sklearn.model_selection import learning_curve
 from sklearn.model_selection import ShuffleSplit
 from sklearn.model_selection import cross_val_predict
 from sklearn.model_selection import cross_val_score
+import scipy.stats as stats
 
 my_path = os.path.curdir
 
@@ -308,18 +309,17 @@ def main():
     print(y_test.shape, prediction.shape)
 
 
+    probability = model.predict_proba(X_test)
 
-    # print(prediction[:,0])
-    # plt.scatter(y_test, prediction[:,0])
-    # plt.xticks([0,1])
+
+
+    # plt.scatter(y_test, probability[:, 0], c=probability[:, 0], s=10)
     # plt.xlabel("Actual")
     # plt.ylabel("Predictions")
+    # plt.xticks([0,1])
+    # plt.gray()
     # plt.show()
 
-
-    # probability = model.predict_proba(X_test)
-
-    # print(model.classes_)
 
     accuracy = model.score(X_test, y_test)
     recall = metrics.recall_score(y_test, prediction)
@@ -359,18 +359,17 @@ def main():
     #LEARNING CURVE
     # # Cross validation with 100 iterations to get smoother mean test and train
     # # score curves, each time with 20% data randomly selected as a validation set.
-    title = "Learning Curve"
-    cv = ShuffleSplit(n_splits=100, test_size=0.2, random_state=0)
+    # title = "Learning Curve"
+    # cv = ShuffleSplit(n_splits=100, test_size=0.2, random_state=0)
+    #
+    # estimator = MultinomialNB()
+    # plot_learning_curve(estimator, title, X, y, ylim=(0.7, 1.01), cv=cv, n_jobs=4)
+    # plt.show()
 
-    estimator = MultinomialNB()
-    plot_learning_curve(estimator, title, X, y, ylim=(0.7, 1.01), cv=cv, n_jobs=4)
-    plt.show()
-
-    print(prediction)
-    plt.scatter(y_test, prediction)
-    plt.xlabel("TrueValues")
-    plt.ylabel("Predictions")
-    plt.show()
+    # plt.scatter(y_test, prediction)
+    # plt.xlabel("TrueValues")
+    # plt.ylabel("Predictions")
+    # plt.show()
 
 main()
 
